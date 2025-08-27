@@ -4,11 +4,12 @@ package my.e88gt.schlong.token;
 import java.util.*;
 
 import my.e88gt.schlong.*;
+import my.e88gt.schlong.things.*;
 import my.e88gt.schlong.utils.*;
 
 public class Tokenizer
 {
-	private final ArrayList<String> errorStack = new ArrayList<>();
+	private final ArrayList<String> errors = new ArrayList<>();
 	private int i = 0;
 	private final int len;
 	private final String src;
@@ -24,7 +25,7 @@ public class Tokenizer
 	{
 		ArrayList<Token> tokens = new ArrayList<>();
 		
-		looping: while (!isEOF())
+		looping: while (current().hasValue())
 		{
 			// who Is going To be Modifying this?
 			// and When is He going To modify It?
@@ -76,7 +77,7 @@ public class Tokenizer
 			}
 			else
 			{
-				errorStack.add("Unknown character '" + current().value() + "' at the index of " + i);
+				errors.add("Unknown character '" + current().value() + "' at the index of " + i);
 				next();
 			}
 		}
@@ -86,7 +87,7 @@ public class Tokenizer
 	
 	public ArrayList<String> getErrors()
 	{
-		return errorStack;
+		return errors;
 	}
 	
 	private Nullable<Character> current()
@@ -97,12 +98,9 @@ public class Tokenizer
 		return new Nullable<Character>(src.charAt(i));
 	}
 	
-	private Nullable<Character> next()
+	private char next()
 	{
-		if (isEOF())
-			return new Nullable<Character>(null);
-		
-		return new Nullable<Character>(src.charAt(i++));
+		return src.charAt(i++);
 	}
 	
 	private boolean isEOF()

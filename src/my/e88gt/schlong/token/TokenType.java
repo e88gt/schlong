@@ -7,4 +7,9 @@ public enum TokenType
 	NUMBER,
 	SEMI,
 	;
+	
+	@Override public String toString()
+	{
+		return name().toLowerCase();
+	}
 }

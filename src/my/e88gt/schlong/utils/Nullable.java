@@ -34,6 +34,6 @@ public class Nullable<T>
 	
 	@Override public String toString()
 	{
-		return t + "?";
+		return "" + t;
 	}
 }

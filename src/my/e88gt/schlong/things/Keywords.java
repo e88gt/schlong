@@ -1,4 +1,4 @@
-package my.e88gt.schlong;
+package my.e88gt.schlong.things;
 
 public enum Keywords
 {;
