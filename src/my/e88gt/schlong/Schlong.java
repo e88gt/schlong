@@ -9,7 +9,7 @@ public class Schlong
 {
 	public static void main(String...args)throws Throwable
 	{
-		args=new String[] {"ex/TestReturn0.s"};
+		args=new String[] {"tests/TestReturn0.s"};
 		String path=args[0],src=new String(Files.readAllBytes(Paths.get(path)));
 		
 		Tokenizer tokenizer = new Tokenizer(src);
