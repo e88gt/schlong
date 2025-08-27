@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Tokenizer
 {
+	final ArrayList<String>errs=new ArrayList<>();
 	int i;
 	final int len;
 	final String src;
@@ -24,9 +25,8 @@ public class Tokenizer
 			// who Is going To be Modifying this?
 			// and When is He going To modify It?
 			if(Character.isWhitespace(c()))
-			{
 				continue looping;
-			}
+				
 			else if(Character.isDigit(c()))
 			{
 				StringBuilder numbers = new StringBuilder();
@@ -38,30 +38,44 @@ public class Tokenizer
 				}
 				i--;
 				
-				tokens.add(new Token(TokenType.NUMBER));
-				
-				System.out.println(numbers);
+				tokens.add(new Token(TokenType.NUMBER, numbers.toString()));
 			}
 			else if(Character.isLetter(c()))
 			{
 				StringBuilder letters = new StringBuilder();
 				
-				while(Character.isLetter(c()))
+				while(Character.isLetterOrDigit(c()))
 				{
 					letters.append(c());
 					i++;
 				}
 				i--;
 				
-				System.out.println(letters);
+				if(letters.toString().equals("return"))
+				{
+					tokens.add(new Token(TokenType.RETURN, null));
+				}
+				else
+				{
+					errs.add("Unknown token '" + letters + "' at " + i);
+				}
+			}
+			else if(c()==';')
+			{
+				tokens.add(new Token(TokenType.SEMI, null));
 			}
 			else
 			{
-				System.err.println("? '"+c()+"'");
+				errs.add("Unknown character '" + c() + "' at " + i);
 			}
 		}
 		
 		return tokens;
+	}
+	
+	public ArrayList<String>getErrors()
+	{
+		return errs;
 	}
 	
 	private char c()

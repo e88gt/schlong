@@ -15,6 +15,12 @@ public class Schlong
 		Tokenizer tokenizer = new Tokenizer(src);
 		ArrayList<Token>tokens = tokenizer.tokenize();
 		
+		for(int i=0;i<tokenizer.getErrors().size();i++)
+		{
+			String error = tokenizer.getErrors().get(i);
+			System.err.println("Error "+(1+i)+": "+error);
+		}
+		
 		for(Token t:tokens)
 			System.out.println(t);
 	}
