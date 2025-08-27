@@ -22,15 +22,13 @@ public class Schlong
 			}
 			else if(Character.isDigit(c))
 			{
-				ArrayList<Character>numbers = new ArrayList<>();
+				StringBuilder numbers = new StringBuilder();
 				
-				while(Character.isDigit(c))
+				while(Character.isDigit(src.charAt(i)))
 				{
-					numbers.add(c);
+					numbers.append(src.charAt(i));
+					i++;
 				}
-				
-				String value = numbers.toString();
-				System.out.println(value);
 			}
 			else if(Character.isLetter(c))
 			{
