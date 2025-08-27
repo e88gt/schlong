@@ -6,7 +6,7 @@ public class Schlong
 {
 	public static void main(String...args)throws Throwable
 	{
-		args=new String[] {""};
+		args=new String[] {"res/examples/TestReturn.s"};
 		String path=args[0],src=new String(Files.readAllBytes(Paths.get(path)));
 		
 		looping:for(int i=0;i<src.length();i++)
@@ -17,7 +17,6 @@ public class Schlong
 			
 			if(Character.isWhitespace(c))
 			{
-				continue looping;
 			}
 		}
 	}
