@@ -21,7 +21,7 @@ public class Schlong
 			System.err.println("Error "+(1+i)+": "+error);
 		}
 		
-		for(Token t:tokens)
-			System.out.println(t);
+		Parser parser = new Parser(tokens);
+		parser.parse();
 	}
 }
